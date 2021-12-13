@@ -15,7 +15,6 @@ def memoize(levenshtein):
 		else:
 			ldist = levenshtein(x, y)
 			queried[xy] = ldist
-
 		return ldist
 	return memorize
 
@@ -27,14 +26,12 @@ def levenshtein(x, y):
 	cdef char* c_x = x_bytes
 	cdef bytes y_bytes = y.encode()
 	cdef char* c_y = y_bytes
-
 	return levenshtein_c(c_x, c_y, lx, ly)
 	
 def lev_ratio(x, y):
 	lx = len(x)
 	ly = len(y)
 	lensum = max(lx, ly)
-	
 	ldist = levenshtein(x, y)
 	ratio = (lensum - ldist) / lensum
 	return ratio
